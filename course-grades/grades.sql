@@ -54,3 +54,14 @@ WHERE SM.module_type = 'group-project'
 AND SM.course_id='AcademyMMP/MAPS/Nov2014'
 AND pwr.content_id LIKE '%AcademyMMP/MAPS%'
 ORDER BY SM.grade, AU.username, pwr.question
+
+----- Student Aggregate Grades Per Course */
+Select username, first_name, last_name, email, grade 
+from gradebook_studentgradebook as gb
+left join auth_user as au
+on au.id = gb.user_id
+where course_id = "AcademyMMP/SBC/Jan2015" 
+AND au.id NOT IN 
+(Select sc.user_id from student_courseaccessrole as sc 
+WHERE sc.course_id = "AcademyMMP/SBC/Jan2015") 
+ORDER BY au.id
