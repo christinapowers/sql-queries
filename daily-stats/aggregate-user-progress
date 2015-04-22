@@ -1,0 +1,43 @@
+Select DISTINCT au.id, au.first_name, au.last_name, au.email,
+(Select count(*) from progress_coursemodulecompletion as pcc 
+left join auth_user as auth
+ON auth.id = pcc.user_id where pcc.course_id = "AcademyMMP/SBC/Jan2015" and pcc.user_id = au.id)
+as "total progress",
+(Select count(*) from progress_coursemodulecompletion as pcc1 
+where pcc1.course_id = "AcademyMMP/SBC/Jan2015" 
+and pcc1.user_id = au.id 
+and DATE_FORMAT(pcc1.modified, '%c/%d/%Y') = '3/20/2015')
+as "Mar 20",
+(Select count(*) from progress_coursemodulecompletion as pcc2 
+where pcc2.course_id = "AcademyMMP/SBC/Jan2015" 
+and pcc2.user_id = au.id 
+and DATE_FORMAT(pcc2.modified, '%c/%d/%Y') = '3/21/2015')
+as "Mar 21",
+(Select count(*) from progress_coursemodulecompletion as pcc3 
+where pcc3.course_id = "AcademyMMP/SBC/Jan2015" 
+and pcc3.user_id = au.id 
+and DATE_FORMAT(pcc3.modified, '%c/%d/%Y') = '3/22/2015')
+as "Mar 22",
+(Select count(*) from progress_coursemodulecompletion as pcc4
+where pcc4.course_id = "AcademyMMP/SBC/Jan2015" 
+and pcc4.user_id = au.id 
+and DATE_FORMAT(pcc4.modified, '%c/%d/%Y') = '3/23/2015')
+as "Mar 23",
+(Select count(*) from progress_coursemodulecompletion as pcc5
+where pcc5.course_id = "AcademyMMP/SBC/Jan2015" 
+and pcc5.user_id = au.id 
+and DATE_FORMAT(pcc5.modified, '%c/%d/%Y') = '3/24/2015')
+as "Mar 24",
+(Select count(*) from progress_coursemodulecompletion as pcc6
+where pcc6.course_id = "AcademyMMP/SBC/Jan2015" 
+and pcc6.user_id = au.id 
+and DATE_FORMAT(pcc6.modified, '%c/%d/%Y') = '3/25/2015')
+as "Mar 25",
+(Select count(*) from progress_coursemodulecompletion as pcc7
+where pcc7.course_id = "AcademyMMP/SBC/Jan2015" 
+and pcc7.user_id = au.id 
+and DATE_FORMAT(pcc7.modified, '%c/%d/%Y') = '3/26/2015')
+as "Mar 26"
+FROM progress_coursemodulecompletion as pc
+left join auth_user as au
+ON au.id = pc.user_id where course_id = "AcademyMMP/SBC/Jan2015"
