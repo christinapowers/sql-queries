@@ -63,3 +63,12 @@ WHERE SM.module_type = 'group-project'
 AND SM.course_id='AcademyMMP/MAPS/Nov2014'
 AND pwr.content_id LIKE '%AcademyMMP/MAPS%'
 ORDER BY SM.grade, AU.username, pwr.question
+
+/*FREE RESPONSE ANSWERS*/
+Select ma.name, au.first_name, au.last_name,au.username,au.email, ma.student_input
+from mentoring_answer as ma
+left join student_anonymoususerid as sau
+on sau.anonymous_user_id = ma.student_id
+left join auth_user as au
+on au.id = sau.user_id
+where ma.course_id = "BETA/WL/Apr2015" AND ma.student_input <> "" and ma.name LIKE '%L4%'
